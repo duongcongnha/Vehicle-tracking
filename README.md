@@ -1,7 +1,7 @@
 # Vehicle tracking with Yolov5 + Deep Sort with PyTorch
 
 <p>
-<img src="videos/example.gif" width="500"/> 
+<img src="videos/example2.gif" width="500"/> 
 </p>
 
 
