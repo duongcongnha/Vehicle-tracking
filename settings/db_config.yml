@@ -1,0 +1,7 @@
+dialect: "postgresql"
+driver: "psycopg2"
+user: "postgres"
+password: "root2351"
+host: "localhost"
+port: "5432"
+database: "vehicle_tracking"

@@ -1,0 +1,52 @@
+# pip install -r requirements.txt
+
+# base ----------------------------------------
+
+pyparsing==3.0.6
+matplotlib>=3.2.2
+numpy==1.19.5
+opencv-python==4.5.4.60
+Pillow==8.4.0
+PyYAML==6.0
+requests==2.26.0
+scipy==1.7.3
+tqdm==4.62.3
+
+torch==1.8.0+cu101
+torchvision==0.9.0+cu101
+
+# plotting ------------------------------------
+
+pandas>=1.1.4
+seaborn>=0.11.0
+
+# deep_sort -----------------------------------
+
+easydict
+
+# torchreid
+
+Cython
+h5py
+six
+tb-nightly
+future
+yacs
+gdown
+flake8
+yapf
+isort==4.3.21
+imageio
+
+
+# database ----------------------------------
+SQLAlchemy==1.4.29
+psycopg2==2.9.2
+pg8000==1.23.0
+
+
+# API ---------------------------------------
+fastapi==0.70.1
+uvicorn==0.16.0
+
+
