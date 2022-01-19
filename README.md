@@ -7,13 +7,13 @@
 
 ## Before running the tracker
 
-
+python version = 3.7.11
 `pip install -r requirements.txt`
 
    
 ## Config
 
-`src/settings/config.yml`
+`settings/config.yml`
 
 ## Running
 
