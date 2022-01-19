@@ -7,7 +7,7 @@
 
 ## Before running the tracker
 
-python version = 3.7.11
+<br>python version = 3.7.11</br>
 `pip install -r requirements.txt`
 
    
