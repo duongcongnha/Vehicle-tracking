@@ -9,7 +9,9 @@
 
 Python 3.7.12 
 <br></br>
-```pip install -r requirements.txt```
+```
+pip install -r requirements.txt
+```
 
     
 ## Config
