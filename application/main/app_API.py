@@ -30,9 +30,9 @@ async def get_vehicles_in_interval(start_datetime: str = Form(default=(datetime.
     
     return {"all_vehicles": all_vehicles}
 
-@app.post("/login/")
-async def login(username: str = Form(default="nhap username do"), password: str = Form(...)):
-    return {"username": username}
+# @app.post("/login/")
+# async def login(username: str = Form(default="nhap username do"), password: str = Form(...)):
+#     return {"username": username}
 
 
 # uvicorn app_API:app --host 0.0.0.0 --port 8000 --reload
