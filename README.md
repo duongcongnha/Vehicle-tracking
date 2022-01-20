@@ -8,7 +8,7 @@
 ## Before running the tracker
 
 Python 3.7.12 
-<br></br>
+
 ```
 pip install -r requirements.txt
 ```
@@ -16,11 +16,11 @@ pip install -r requirements.txt
     
 ## Config
 
-`src/settings`
+`settings/`
 <br></br>
 `config.yml`, `deepsort.yml`, `db_config.yml`
 
-## Running
+## Running tracker
 
 ```
 cd application\main
