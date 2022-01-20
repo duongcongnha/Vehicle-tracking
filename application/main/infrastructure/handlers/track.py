@@ -280,9 +280,10 @@ class Tracker:
                             # label = f'{id} {names[c]} {conf:.2f}'
                             label = f'{names[c]}- id {id}'
                             
-                            bbox_left, bbox_top, bbox_right, bbox_bottom = bboxes
-                            if (bbox_top - lower_line) >= 1.5*(lower_line - bbox_bottom)\
-                                or (bbox_bottom - upper_line) >= 1.5*(upper_line - bbox_top):     
+                            bbox_left, bbox_top, bbox_right, bbox_bottom = bboxes 
+                                                       
+                            if (lower_line - bbox_top) >= 4*(bbox_bottom - lower_line)\
+                                and (bbox_bottom - upper_line) >= 1.5*(upper_line - bbox_top):     
 
                                 annotator.box_label(bboxes, label, color=colors(c, True))
                                 vehicle_infos[id]['type_vehicle'] = names[c]                            
@@ -347,3 +348,4 @@ if __name__ == '__main__':
     
     with torch.no_grad():
         tracker.detect()
+
