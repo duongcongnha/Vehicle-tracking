@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 `settings/`
 <br></br>
-`config.yml`, `deepsort.yml`, `db_config.yml`
+`config.yml`  `deepsort.yml`  `db_config.yml`
 
 ## Running tracker
 
