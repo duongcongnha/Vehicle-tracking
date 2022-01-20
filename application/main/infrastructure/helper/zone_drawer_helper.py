@@ -6,6 +6,7 @@ class ZoneDrawerHelper():
     def __init__(self) -> None:
         self.custom_green = (2, 115, 36)
         self.font = cv2.FONT_HERSHEY_DUPLEX
+        
     def draw(self, im0:np.ndarray, frame_width,frame_height:int, upper_ratio, lower_ratio):
         
         # top zone

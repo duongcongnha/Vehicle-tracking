@@ -142,7 +142,7 @@ class Tracker:
         # list_ouputs = {}
         # list_frontal_faces = {}
         previous_frame, current_frame = [-1, -1]
-        list_duration = {} # id:{start in view, exit view, type }
+        vehicle_infos = {} # id:{start in view, exit view, type }
         list_vehicles = set()  #LIST CONTAIN vehicles HAS APPEARED, IF THAT VEHICLE HAD BEEN UPLOADED TO DB, REMOVE THAT VEHICLE
         
 
@@ -185,7 +185,7 @@ class Tracker:
 
                 annotator = Annotator(im0, line_width=2, pil=not ascii)
 
-                # draw unused zones
+                # draw red zones
                 zone_drawer.draw(im0, frame_width=frame_width, frame_height=frame_height, upper_ratio=upper_ratio, lower_ratio=lower_ratio)
 
                 if det is not None and len(det):
@@ -240,34 +240,34 @@ class Tracker:
                         for ID in current_IDs:
                             # neu id khong co trong khung hinh truoc va chua tung xuat hien
                             if (ID not in previous_IDs) and (ID not in list_vehicles):
-                                list_duration[ID] = {}
-                                list_duration[ID]['in_time'] = datetime.now()
-                                list_duration[ID]['exit_time'] = datetime.max
-                                list_duration[ID]['type_vehicle'] = 'vehicle'                        
-                                list_duration[ID]['temporarily_disappear'] = 0
+                                vehicle_infos[ID] = {}
+                                vehicle_infos[ID]['in_time'] = datetime.now()
+                                vehicle_infos[ID]['exit_time'] = datetime.max
+                                vehicle_infos[ID]['type_vehicle'] = 'vehicle'                        
+                                vehicle_infos[ID]['temporarily_disappear'] = 0
                                 
                         # for ID in previous_IDs:
                         for ID in copy.deepcopy(list_vehicles):
                             if (ID not in current_IDs):
-                                list_duration[ID]['exit_time'] = datetime.now()
-                                list_duration[ID]['temporarily_disappear'] += 1
+                                vehicle_infos[ID]['exit_time'] = datetime.now()
+                                vehicle_infos[ID]['temporarily_disappear'] += 1
                                 #25 frame ~ 1 seconds
-                                if (list_duration[ID]['temporarily_disappear'] > 75) and \
-                                    (list_duration[ID]['exit_time'] - list_duration[ID]['in_time'])>timedelta(seconds=1): 
+                                if (vehicle_infos[ID]['temporarily_disappear'] > 75) and \
+                                    (vehicle_infos[ID]['exit_time'] - vehicle_infos[ID]['in_time'])>timedelta(seconds=1): 
 
                                     str_ID = str(ID) + "-" +str(time.time()).replace(".", "")
                                     if opt.upload_db:
                                     
-                                        this_vehicle = Vehicle(str_ID, list_duration[ID]['in_time'], list_duration[ID]['exit_time'], 
-                                                                list_duration[ID]['type_vehicle'])
+                                        this_vehicle = Vehicle(str_ID, vehicle_infos[ID]['in_time'], vehicle_infos[ID]['exit_time'], 
+                                                                vehicle_infos[ID]['type_vehicle'])
                                         Thread(target= add_vehicle_to_db, args=[this_vehicle]).start()
                                     
                                     
                                     list_vehicles.discard(ID)
-                                    # list_duration.pop(ID)
+                                    # vehicle_infos.pop(ID)
                     
                     
-                    
+                    # Visualize deepsort outputs
                     if len(outputs) > 0:
 
                         for j, (output, conf) in enumerate(zip(outputs, confs)): 
@@ -277,14 +277,15 @@ class Tracker:
                             cls = output[5]
 
                             c = int(cls)  # integer class
-                            label = f'{id} {names[c]} {conf:.2f}'
+                            # label = f'{id} {names[c]} {conf:.2f}'
+                            label = f'{names[c]}- id {id}'
                             
                             bbox_left, bbox_top, bbox_right, bbox_bottom = bboxes
                             if (bbox_top - lower_line) >= 1.5*(lower_line - bbox_bottom)\
                                 or (bbox_bottom - upper_line) >= 1.5*(upper_line - bbox_top):     
 
                                 annotator.box_label(bboxes, label, color=colors(c, True))
-                                list_duration[id]['type_vehicle'] = names[c]                            
+                                vehicle_infos[id]['type_vehicle'] = names[c]                            
             
 
                         vehicles_count, IDs_vehicles = current_frame['n_vehicles_at_time'], current_frame['IDs_vehicles']                            
@@ -295,6 +296,7 @@ class Tracker:
 
                 else:
                     deepsort.increment_ages()
+
 
                 # Print time (inference-only)
                 # LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s)')
@@ -326,7 +328,7 @@ class Tracker:
 
             previous_frame = current_frame
 
-        print(list_duration)
+        print(vehicle_infos)
         print(list_vehicles)
 
 

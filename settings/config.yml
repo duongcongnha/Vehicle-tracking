@@ -25,11 +25,11 @@ source: ../../videos/cut3.avi
 output: inference/output
 save_csv: false
 save_txt: false
-save_vid: false
-show_vid: true
+save_vid: true
+show_vid: false
 
 #lines zones
-upper_ratio: 0.4166
+upper_ratio: 0.4
 lower_ratio: 0.9231
 
 #DB
