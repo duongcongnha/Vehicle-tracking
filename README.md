@@ -28,6 +28,12 @@ cd application\main
 python app_track.py
 ```
 
+## Saving result
+Results can be save to databse: `upload_db` in file `config.yml`
+<p>
+<img src="videos/db.PNG" width="500"/>
+</p>
+
 ## FastAPI
 <p>
 <img src="videos/fastapi2.PNG" width="500"/>
