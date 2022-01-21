@@ -282,11 +282,11 @@ class Tracker:
                             
                             bbox_left, bbox_top, bbox_right, bbox_bottom = bboxes 
                                                        
-                            if (lower_line - bbox_top) >= 4*(bbox_bottom - lower_line)\
-                                and (bbox_bottom - upper_line) >= 1.5*(upper_line - bbox_top):     
+#                             if (lower_line - bbox_top) >= 4*(bbox_bottom - lower_line)\
+#                                 and (bbox_bottom - upper_line) >= 1.5*(upper_line - bbox_top):     
 
-                                annotator.box_label(bboxes, label, color=colors(c, True))
-                                vehicle_infos[id]['type_vehicle'] = names[c]                            
+                            annotator.box_label(bboxes, label, color=colors(c, True))
+                            vehicle_infos[id]['type_vehicle'] = names[c]                            
             
 
                         vehicles_count, IDs_vehicles = current_frame['n_vehicles_at_time'], current_frame['IDs_vehicles']                            
