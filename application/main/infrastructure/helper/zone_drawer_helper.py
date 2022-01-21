@@ -27,6 +27,8 @@ class ZoneDrawerHelper():
         overlay = copy.deepcopy(zone)
 
         cv2.rectangle(overlay, (0, 0), (overlay.shape[1], overlay.shape[0]), (0, 0, 200), -1)
+        cv2.putText(overlay, "LEFT LANE", (frame_width//4, 0+25), self.font, 0.7, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(overlay, "RIGHT LANE", (int(frame_width*0.59), 0+25), self.font, 0.7, (255, 255, 255), 2, cv2.LINE_AA)
         
         im0[y:y1, x:x1] = cv2.addWeighted(overlay, alpha, zone, 1 - alpha, 0)
 
