@@ -256,7 +256,7 @@ class Tracker:
                                 vehicle_infos[ID]['temporarily_disappear'] += 1
                                 #25 frame ~ 1 seconds
                                 if (vehicle_infos[ID]['temporarily_disappear'] > 75) and \
-                                    (vehicle_infos[ID]['exit_time'] - vehicle_infos[ID]['in_time'])>timedelta(seconds=3.5): 
+                                    (vehicle_infos[ID]['exit_time'] - vehicle_infos[ID]['in_time'])>timedelta(seconds=3): 
 
                                     str_ID = str(ID) + "-" +str(time.time()).replace(".", "")
                                     if opt.upload_db:
