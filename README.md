@@ -42,7 +42,7 @@ uvicorn app_API:app --host 0.0.0.0 --port 8000 --reload
 
 ```
 <p>
-<img src="videos/fastapi1.PNG" width="500"/>
+<img src="videos/fastapi.PNG" width="500"/>
 </p>
 
 
