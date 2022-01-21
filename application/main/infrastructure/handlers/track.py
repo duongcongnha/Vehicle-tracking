@@ -155,6 +155,7 @@ class Tracker:
             frame_width = im0s.shape[1]
             upper_line = int(frame_height*upper_ratio)
             lower_line = int(frame_height*lower_ratio)
+            middle_line = frame_width//2
 
             if img.ndimension() == 3:
                 img = img.unsqueeze(0)
@@ -243,8 +244,10 @@ class Tracker:
                                 vehicle_infos[ID] = {}
                                 vehicle_infos[ID]['in_time'] = datetime.now()
                                 vehicle_infos[ID]['exit_time'] = datetime.max
-                                vehicle_infos[ID]['type_vehicle'] = 'vehicle'                        
+                                vehicle_infos[ID]['type_vehicle'] = 'vehicle' 
+                                vehicle_infos[ID]['lane'] = 'lane'                     
                                 vehicle_infos[ID]['temporarily_disappear'] = 0
+
                                 
                         # for ID in previous_IDs:
                         for ID in copy.deepcopy(list_vehicles):
@@ -253,13 +256,13 @@ class Tracker:
                                 vehicle_infos[ID]['temporarily_disappear'] += 1
                                 #25 frame ~ 1 seconds
                                 if (vehicle_infos[ID]['temporarily_disappear'] > 75) and \
-                                    (vehicle_infos[ID]['exit_time'] - vehicle_infos[ID]['in_time'])>timedelta(seconds=1): 
+                                    (vehicle_infos[ID]['exit_time'] - vehicle_infos[ID]['in_time'])>timedelta(seconds=3.5): 
 
                                     str_ID = str(ID) + "-" +str(time.time()).replace(".", "")
                                     if opt.upload_db:
                                     
                                         this_vehicle = Vehicle(str_ID, vehicle_infos[ID]['in_time'], vehicle_infos[ID]['exit_time'], 
-                                                                vehicle_infos[ID]['type_vehicle'])
+                                                                vehicle_infos[ID]['type_vehicle'], vehicle_infos[ID]['lane'])
                                         Thread(target= add_vehicle_to_db, args=[this_vehicle]).start()
                                     
                                     
@@ -274,16 +277,16 @@ class Tracker:
                             
                             bboxes = output[0:4]
                             id = output[4]
-                            cls = output[5]
-
+                            cls = output[5]                            
                             c = int(cls)  # integer class
                             # label = f'{id} {names[c]} {conf:.2f}'
                             label = f'{names[c]}- id {id}'
                             
                             bbox_left, bbox_top, bbox_right, bbox_bottom = bboxes 
-                                                       
-#                             if (lower_line - bbox_top) >= 4*(bbox_bottom - lower_line)\
-#                                 and (bbox_bottom - upper_line) >= 1.5*(upper_line - bbox_top):     
+                            if bbox_right < middle_line:
+                                vehicle_infos[id]['lane'] = 'left'
+                            if bbox_left > middle_line:
+                                vehicle_infos[id]['lane'] = 'right'
 
                             annotator.box_label(bboxes, label, color=colors(c, True))
                             vehicle_infos[id]['type_vehicle'] = names[c]                            
