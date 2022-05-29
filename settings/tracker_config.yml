@@ -1,0 +1,28 @@
+yolo_model: ../models/yolov5s.pt
+deep_sort_model: osnet_x0_25_market1501
+source: ../videos/cut5s.mp4
+output: inference/output
+imgsz: [640 360]
+conf_thres: 0.5
+iou_thres: 0.5
+fourcc: mp4v
+device: ''
+show_vid: True
+save_vid: False
+save_txt: False
+
+# class 0 is person, 1 is bycicle, 2 is car... 79 is oven
+classes: [1,2,3,5,7]
+agnostic_nms: False
+augment: False
+update: False
+evaluate: False
+config_deepsort: deep_sort/configs/deep_sort.yaml
+half: False
+visualize: False
+max_det: 1000
+save_crop: False
+dnn: False
+project: ''
+name: exp
+exist_ok: False
