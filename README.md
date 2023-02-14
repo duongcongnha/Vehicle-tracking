@@ -1,5 +1,8 @@
 # Vehicle tracking with Yolov5 + Deep Sort with PyTorch
 
+## Note
+For everyones comes here from youtube or just want to use my repo for inference. This is an very old project just for learning CV when i was in school. It's been a long time so I forgot everything that I did in this toy project. I've editted from this <a href="https://github.com/mikel-brostrom/yolov8_tracking">repo</a> and add some lines of code for some constraints. You guys can use that <a href="https://github.com/mikel-brostrom/yolov8_tracking">repo</a> for references. Thanks.
+
 <p>
 <img src="videos/example3.gif" width="500"/>
 </p>
