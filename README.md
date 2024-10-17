@@ -1,7 +1,7 @@
 # Vehicle tracking with Yolov5 + Deep Sort with PyTorch
 
 ## Note
-For everyones comes here from youtube or just want to use my repo for inference. This is an very old project just for learning CV when i was in school. It's been a long time so I forgot everything that I did in this toy project. I've editted from this <a href="https://github.com/mikel-brostrom/yolov8_tracking">repo</a> and add some lines of code for some constraints. You guys can use that <a href="https://github.com/mikel-brostrom/yolov8_tracking">repo</a> for references. Thanks.
+For everyones comes here from youtube or just want to use my repo for inference. This is an very old project just for learning Computer Vision when i was in school. It's been a long time so I forgot almost everything that I did in this toy project. I've editted from this <a href="https://github.com/mikel-brostrom/yolov8_tracking">repo</a> and add some lines of code for some constraints. You guys can use that <a href="https://github.com/mikel-brostrom/yolov8_tracking">repo</a> for references. Thanks.
 
 <p>
 <img src="videos/example3.gif" width="500"/>
@@ -29,7 +29,7 @@ pip install -r requirements.txt
 ## Running tracker
 
 ```
-cd application\main
+cd application/main
 python app_track.py
 ```
 
@@ -42,7 +42,7 @@ Results can be save to databse: `upload_db` in file `config.yml`
 ## FastAPI
 
 ```
-cd application\main
+cd application/main
 uvicorn app_API:app --host 0.0.0.0 --port 8000 --reload
 
 ```
