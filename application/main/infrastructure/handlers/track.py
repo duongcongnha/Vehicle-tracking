@@ -239,7 +239,7 @@ class Tracker:
                         current_IDs = current_frame['IDs_vehicles']
     
                         for ID in current_IDs:
-                            # neu id khong co trong khung hinh truoc va chua tung xuat hien
+                            # if id is not in the previous frame and has never appeared
                             if (ID not in previous_IDs) and (ID not in list_vehicles):
                                 vehicle_infos[ID] = {}
                                 vehicle_infos[ID]['in_time'] = datetime.now()
